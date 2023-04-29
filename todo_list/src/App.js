@@ -28,6 +28,16 @@ const App = () => {
     setTodos(updatedTodos);
   }
 
+  function toggleComplete(id) {
+    let updatedTodos = [...todos].map((todo) => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  }
+
   return (
       <div id="todo-list">
         <h1>Todo List</h1>
@@ -43,6 +53,9 @@ const App = () => {
         {todos.map((todo) => <div className="todo" key={todo.id}>
             <div>{todo.text}</div>
 
+
+            <input type="checkbox" id="completed" checked={todo.completed} onChange={() => toggleComplete(todo.id)}/>
+            
             <button onClick={() => deleteTodo(todo.id)}>Delete</button>
         </div>)}
         </div>
